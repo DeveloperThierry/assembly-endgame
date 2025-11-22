@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import { languages } from "./languages";
 
 export default function AssemblyEndgame() {
-  return (
+  const [currentWord, setCurrentWord] = useState('Protein')
+    return (
     <main>
       <header>
         Assembly: Endgame
@@ -27,6 +28,11 @@ export default function AssemblyEndgame() {
             </span>
           );
         })}
+      </section>
+      <section className="word">
+        {currentWord.split('').map((letter, index)=>
+            <span key={index}>{letter.toUpperCase()}</span>
+        )}
       </section>
     </main>
   );
