@@ -83,6 +83,7 @@ export default function AssemblyEndgame() {
           });
           return (
             <button
+            disabled={isGameOver?true:false}
               key={letter}
               onClick={() => addGuessedLetter(letter)}
               className={className}
