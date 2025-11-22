@@ -30,6 +30,10 @@ export default function AssemblyEndgame() {
     lost: isGameLost,
   });
 
+  function startNewGame(){
+    setCurrentWord(getRandomWord())
+    setGuessedLetters([])
+  }
   return (
     <main>
       <header>
@@ -118,7 +122,7 @@ export default function AssemblyEndgame() {
           );
         })}
       </section>
-      {isGameOver && <button className="new-game">New Game</button>}
+      {isGameOver && <button  onClick={()=>startNewGame()} className="new-game">New Game</button>}
     </main>
   );
 }
