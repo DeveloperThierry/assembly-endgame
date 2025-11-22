@@ -4,6 +4,12 @@ import { languages } from "./languages";
 export default function AssemblyEndgame() {
   const [currentWord, setCurrentWord] = useState('Protein')
   const alphabet = "qwertyuiopasdfghjklzxcvbnm"
+  const [guessedLetters, setGuessedLetters] = useState([])
+
+  function addGuessedLetter(letter){
+    setGuessedLetters(prevLetters => prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter])
+    console.log(guessedLetters)
+  }
     return (
     <main>
       <header>
@@ -36,7 +42,9 @@ export default function AssemblyEndgame() {
         )}
       </section>
       <section className="keyboard">
-        {alphabet.split('').map((letter)=> <button key={letter}>{letter.toUpperCase()}</button>)}
+        {alphabet.split('').map((letter)=> <button key={letter}
+        onClick={() => addGuessedLetter(letter)}
+        >{letter.toUpperCase()}</button>)}
       </section>
       <button className="new-game">New Game</button>
     </main>
