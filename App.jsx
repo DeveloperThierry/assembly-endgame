@@ -6,9 +6,11 @@ export default function AssemblyEndgame() {
   const alphabet = "qwertyuiopasdfghjklzxcvbnm"
   const [guessedLetters, setGuessedLetters] = useState([])
 
+  const wrongGuessesCount = guessedLetters.filter((letter) => !currentWord.includes(letter)).length
+  console.log(wrongGuessesCount)
+
   function addGuessedLetter(letter){
     setGuessedLetters(prevLetters => prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter])
-    console.log(guessedLetters)
   }
     return (
     <main>
