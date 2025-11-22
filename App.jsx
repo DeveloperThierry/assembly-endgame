@@ -76,11 +76,16 @@ export default function AssemblyEndgame() {
         })}
       </section>
       <section className="word">
-        {currentWord.split("").map((letter, index) => (
-          <span key={index}>
-            {guessedLetters.includes(letter) ? letter.toUpperCase() : ""}
+        {currentWord.split("").map((letter, index) => {
+            const shouldRevealLetter = guessedLetters.includes(letter) || isGameLost
+            const letterClassName=clsx(
+                isGameLost && !guessedLetters.includes(letter) && "missed-letter"
+            )
+            return(
+          <span key={index} className={letterClassName}>
+            {shouldRevealLetter ? letter.toUpperCase() : ""}
           </span>
-        ))}
+        )})}
       </section>
       <section className="sr-only" aria-live="polite" role="status">
         <p>
