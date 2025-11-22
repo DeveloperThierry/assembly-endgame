@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { languages } from "./languages";
 import clsx from "clsx";
+import {getRandomWord} from './utils.js'
 export default function AssemblyEndgame() {
-  const [currentWord, setCurrentWord] = useState("protein");
+
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
   const alphabet = "qwertyuiopasdfghjklzxcvbnm";
   const [guessedLetters, setGuessedLetters] = useState([]);
   const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
