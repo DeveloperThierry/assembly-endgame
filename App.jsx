@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { languages } from "./languages";
 import clsx from "clsx";
 import {getRandomWord} from './utils.js'
+import Confetti from 'react-confetti'
 export default function AssemblyEndgame() {
 
   const [currentWord, setCurrentWord] = useState(() => getRandomWord());
@@ -36,6 +37,12 @@ export default function AssemblyEndgame() {
   }
   return (
     <main>
+        {
+            isGameWon && <Confetti
+            recycle={false}
+            numberOfPieces={1000}
+            />
+        }
       <header>
         Assembly: Endgame
         <p>
