@@ -38,7 +38,7 @@ export default function AssemblyEndgame() {
       <section className="keyboard">
         {alphabet.split('').map((letter)=> <button key={letter}>{letter.toUpperCase()}</button>)}
       </section>
-      <button className="New Game">New Game</button>
+      <button className="new-game">New Game</button>
     </main>
   );
 }
