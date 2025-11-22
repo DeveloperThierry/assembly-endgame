@@ -38,7 +38,7 @@ export default function AssemblyEndgame() {
       </section>
       <section className="word">
         {currentWord.split('').map((letter, index)=>
-            <span key={index}>{letter.toUpperCase()}</span>
+            <span key={index}>{guessedLetters.includes(letter) ? letter.toUpperCase() : ''}</span>
         )}
       </section>
       <section className="keyboard">
