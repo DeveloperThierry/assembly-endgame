@@ -16,6 +16,7 @@ export default function AssemblyEndgame() {
   const isGameLost = wrongGuessCount >= languages.length - 1;
   const isGameOver = isGameWon || isGameLost;
 
+
   function addGuessedLetter(letter) {
     setGuessedLetters((prevLetters) =>
       prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter]
@@ -26,6 +27,8 @@ export default function AssemblyEndgame() {
     won: isGameWon,
     lost: isGameLost,
   });
+
+  
   return (
     <main>
       <header>
