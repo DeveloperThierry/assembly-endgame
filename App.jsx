@@ -38,7 +38,7 @@ export default function AssemblyEndgame() {
           from assembly
         </p>
       </header>
-      <section className={gameStatusClass}>
+      <section aria-live='polite' role='status'  className={gameStatusClass}>
         {isGameOver ? (
           <>
             {isGameWon ?
@@ -75,6 +75,11 @@ export default function AssemblyEndgame() {
           </span>
         ))}
       </section>
+      <section className="sr-only" aria-live="polite"
+      role="status"
+      >
+        <p>Current word: {currentWord.split("").map(letter => guessedLetters.includes(letter) ? letter + '.': 'blank').join(' ')}</p>
+      </section>
       <section className="keyboard">
         {alphabet.split("").map((letter) => {
           const isGuessed = guessedLetters.includes(letter);
@@ -86,7 +91,9 @@ export default function AssemblyEndgame() {
           });
           return (
             <button
-            disabled={isGameOver?true:false}
+            aria-label={`Letter ${letter}`}
+            aria-disabled={guessedLetters.includes(letter)}
+            disabled={isGameOver}
               key={letter}
               onClick={() => addGuessedLetter(letter)}
               className={className}
