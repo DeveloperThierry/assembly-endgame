@@ -13,10 +13,11 @@ import React from "react"
  *   events do I need to handle?
  */
 
-export default function Hangman() {
+export default function AssemblyEndgame() {
     return (
         <main>
-            Game goes here
+            <header>Assembly: Endgame</header>
+            <p>Guess the word within 8 attempts to keep the programming world safe from assembly</p>
         </main>
     )
 }
