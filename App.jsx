@@ -3,6 +3,7 @@ import { languages } from "./languages";
 
 export default function AssemblyEndgame() {
   const [currentWord, setCurrentWord] = useState('Protein')
+  const alphabet = "qwertyuiopasdfghjklzxcvbnm"
     return (
     <main>
       <header>
@@ -34,6 +35,10 @@ export default function AssemblyEndgame() {
             <span key={index}>{letter.toUpperCase()}</span>
         )}
       </section>
+      <section className="keyboard">
+        {alphabet.split('').map((letter)=> <button key={letter}>{letter.toUpperCase()}</button>)}
+      </section>
+      <button className="New Game">New Game</button>
     </main>
   );
 }
