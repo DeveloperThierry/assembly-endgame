@@ -6,8 +6,11 @@ export default function AssemblyEndgame() {
   const alphabet = "qwertyuiopasdfghjklzxcvbnm"
   const [guessedLetters, setGuessedLetters] = useState([])
 
-  const wrongGuessesCount = guessedLetters.filter((letter) => !currentWord.includes(letter)).length
-  console.log(wrongGuessesCount)
+  const wrongGuessCount = guessedLetters.filter((letter) => !currentWord.includes(letter)).length
+
+  const isGameWon = currentWord.split('').every(letter => guessedLetters.includes(letter))
+  const isGameLost = wrongGuessCount >= languages.length-1
+  const isGameOver = isGameWon || isGameLost
 
   function addGuessedLetter(letter){
     setGuessedLetters(prevLetters => prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter])
@@ -27,7 +30,7 @@ export default function AssemblyEndgame() {
       </section>
       <section className="language-chips">
         {languages.map((lang, index) => {
-            const isLanguageLost = index < wrongGuessesCount
+            const isLanguageLost = index < wrongGuessCount
           const styles = {
             backgroundColor: lang.backgroundColor,
             color: lang.color,
@@ -59,7 +62,7 @@ export default function AssemblyEndgame() {
         className={className}
         >{letter.toUpperCase()}</button>)})}
       </section>
-      <button className="new-game">New Game</button>
+      {isGameOver && <button className="new-game">New Game</button>}
     </main>
   );
 }
