@@ -1,0 +1,64 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Node.js (Frontend and Backend)
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build artifacts
+dist/
+build/
+out/
+.next/ # Next.js
+.nuxt/ # Nuxt.js
+public/build/ # Common build output for some frameworks
+
+# Logs
+*.log
+
+# IDE and Editor files
+.idea/ # IntelliJ IDEA
+.vscode/ # VS Code
+*.iml # IntelliJ IDEA
+*.suo # Visual Studio
+*.user # Visual Studio
+*.bak # Backup files
+*~ # Emacs backup files
+# Add other IDE/editor specific files as needed
+
+# Dependency caches
+.parcel-cache/ # Parcel
+.webpack/ # Webpack
+.cache/ # General cache directories
+
+# Test coverage
+coverage/
+
+# Uploaded files (if applicable)
+uploads/
+
+# Database files (if applicable)
+*.sqlite
+*.db
+*.sql # Not always, but for local development, sometimes ignored
+data/ # For local databases
+
+# Environment variables
+# .env files are already covered, but if you have other sensitive config files:
+config/local.js
+secrets.js
+
+# Other temporary files
+tmp/
+temp/
+
+#firebase-studio
+.idx
