@@ -5,7 +5,7 @@ export default function AssemblyEndgame() {
   const [currentWord, setCurrentWord] = useState("protein");
   const alphabet = "qwertyuiopasdfghjklzxcvbnm";
   const [guessedLetters, setGuessedLetters] = useState([]);
-
+  const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
   const wrongGuessCount = guessedLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
@@ -13,9 +13,9 @@ export default function AssemblyEndgame() {
   const isGameWon = currentWord
     .split("")
     .every((letter) => guessedLetters.includes(letter));
+  const numGuessesLeft = languages.length - 1;
   const isGameLost = wrongGuessCount >= languages.length - 1;
   const isGameOver = isGameWon || isGameLost;
-
 
   function addGuessedLetter(letter) {
     setGuessedLetters((prevLetters) =>
@@ -28,7 +28,6 @@ export default function AssemblyEndgame() {
     lost: isGameLost,
   });
 
-  
   return (
     <main>
       <header>
@@ -38,18 +37,20 @@ export default function AssemblyEndgame() {
           from assembly
         </p>
       </header>
-      <section aria-live='polite' role='status'  className={gameStatusClass}>
+      <section aria-live="polite" role="status" className={gameStatusClass}>
         {isGameOver ? (
           <>
-            {isGameWon ?
-           ( <>
-              <h2>You win!</h2>
-              <p>Well done! 🎉</p>
-            </>):
-            (<>
-              <h2>You lose!</h2>
-              <p>Better start learning assembly! ☠️</p>
-            </>)}
+            {isGameWon ? (
+              <>
+                <h2>You win!</h2>
+                <p>Well done! 🎉</p>
+              </>
+            ) : (
+              <>
+                <h2>You lose!</h2>
+                <p>Better start learning assembly! ☠️</p>
+              </>
+            )}
           </>
         ) : null}
       </section>
@@ -75,10 +76,22 @@ export default function AssemblyEndgame() {
           </span>
         ))}
       </section>
-      <section className="sr-only" aria-live="polite"
-      role="status"
-      >
-        <p>Current word: {currentWord.split("").map(letter => guessedLetters.includes(letter) ? letter + '.': 'blank').join(' ')}</p>
+      <section className="sr-only" aria-live="polite" role="status">
+        <p>
+          {currentWord.includes(lastGuessedLetter)
+            ? `Correct! The letter ${lastGuessedLetter} is in word.`
+            : `Sorry, the letter ${lastGuessedLetter} is not in the word.`}
+          You have {numGuessesLeft} attempts left.
+        </p>
+        <p>
+          Current word:{" "}
+          {currentWord
+            .split("")
+            .map((letter) =>
+              guessedLetters.includes(letter) ? letter + "." : "blank"
+            )
+            .join(" ")}
+        </p>
       </section>
       <section className="keyboard">
         {alphabet.split("").map((letter) => {
@@ -91,9 +104,9 @@ export default function AssemblyEndgame() {
           });
           return (
             <button
-            aria-label={`Letter ${letter}`}
-            aria-disabled={guessedLetters.includes(letter)}
-            disabled={isGameOver}
+              aria-label={`Letter ${letter}`}
+              aria-disabled={guessedLetters.includes(letter)}
+              disabled={isGameOver}
               key={letter}
               onClick={() => addGuessedLetter(letter)}
               className={className}
