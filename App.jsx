@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { languages } from "./languages";
-
+import clsx from 'clsx'
 export default function AssemblyEndgame() {
-  const [currentWord, setCurrentWord] = useState('Protein')
+  const [currentWord, setCurrentWord] = useState('protein')
   const alphabet = "qwertyuiopasdfghjklzxcvbnm"
   const [guessedLetters, setGuessedLetters] = useState([])
 
@@ -42,9 +42,18 @@ export default function AssemblyEndgame() {
         )}
       </section>
       <section className="keyboard">
-        {alphabet.split('').map((letter)=> <button key={letter}
+        {alphabet.split('').map((letter)=> {
+            const isGuessed = guessedLetters.includes(letter)
+            const isCorrect = isGuessed &&currentWord.includes(letter)
+            const isWrong = isGuessed &&!currentWord.includes(letter)
+            const className = clsx({
+                correct: isCorrect,
+                wrong: isWrong,
+            })
+            return (<button key={letter}
         onClick={() => addGuessedLetter(letter)}
-        >{letter.toUpperCase()}</button>)}
+        className={className}
+        >{letter.toUpperCase()}</button>)})}
       </section>
       <button className="new-game">New Game</button>
     </main>
